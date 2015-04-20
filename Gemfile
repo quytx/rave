@@ -37,6 +37,10 @@ gem 'pg'
 
 gem 'fog'
 
+gem 'openssl'
+
+gem 'pry'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

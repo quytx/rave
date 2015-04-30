@@ -36,7 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pg'
 
 gem 'fog'
-
+gem 'devise'
 gem 'openssl'
 
 gem 'pry'

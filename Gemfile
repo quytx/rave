@@ -31,6 +31,11 @@ gem 'spring',        group: :development
 gem 'devise', '~> 3.0.4'
 gem 'pry'
 gem 'protected_attributes'
+gem 'carrierwave', '~> 0.10.0'
+
+gem 'fog'
+
+gem 'openssl'
 # Use unicorn as the app server
 # gem 'unicorn'
 

@@ -16,6 +16,31 @@ ActiveRecord::Schema.define(version: 20150501002903) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "event_participants", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "location"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false
     t.string   "email",                  default: "", null: false

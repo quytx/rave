@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'application#index'
   devise_for :users
   resources :photos
 
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
       get 'photos/:photo_id' => 'photos#show', :as => 'photo'
     end
   end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

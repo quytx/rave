@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :photos
-  
-  namespace :api do
-  namespace :v1 do
-    devise_scope :user do
-      post 'registrations' => 'registrations#create', :as => 'register'
-      post 'sessions' => 'sessions#create', :as => 'login'
-      delete 'sessions' => 'sessions#destroy', :as => 'logout'
-    end
 
-    get 'tests' => 'tests#index', :as => 'tests'
+  namespace :api do
+    namespace :v1 do
+      devise_scope :user do
+        post 'registrations' => 'registrations#create', :as => 'register'
+        post 'sessions' => 'sessions#create', :as => 'login'
+        delete 'sessions' => 'sessions#destroy', :as => 'logout'
+      end
+
+      get 'tests' => 'tests#index', :as => 'tests'
+      post 'events' => 'events#create', :as => 'newevent'
+    end
   end
-end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

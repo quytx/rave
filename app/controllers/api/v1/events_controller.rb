@@ -6,9 +6,8 @@ class Api::V1::EventsController < ApplicationController
 
   def create
     # TO DO 
-    binding.pry
     event = User.find(params[:event][:user_id]).events.new(params[:event])
-    # Later on might have to change to current_user
+    # Later on might have to change to current_user (use session)
     if event.save
       
       render :status => 200,

@@ -4,6 +4,23 @@ class Api::V1::EventsController < ApplicationController
 
   respond_to :json
 
+  def index
+    @events = Event.all
+    respond_with(@events)
+  end
+
+  def show
+    @event = Event.find(params[:event_id])
+    if @event
+      respond_with(@event)
+    else
+      render :status => :unprocessable_entity,
+             :json => { :success => false,
+                        :info => @event.errors,
+                        :data => {} }
+    end
+  end
+
   def create
     # TO DO 
     event = User.find(params[:event][:user_id]).events.new(params[:event])

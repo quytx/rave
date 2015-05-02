@@ -10,7 +10,12 @@ Rails.application.routes.draw do
         delete 'sessions' => 'sessions#destroy', :as => 'logout'
       end
 
+      # Test
       get 'tests' => 'tests#index', :as => 'tests'
+
+      # Event
+      get 'events' => 'events#index', :as => 'allevent'
+      get 'events/:event_id' => 'events#show', :as => 'showevent'
       post 'events' => 'events#create', :as => 'newevent'
     end
   end

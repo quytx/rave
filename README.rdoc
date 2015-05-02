@@ -1,17 +1,17 @@
 == README
 
 API  application/json:
-- Register:     POST    /api/v1/registrations
-- Login:        POST    /api/v1/sessions
-- Logout:       DELETE  /api/v1/sessions/?auth_token=???????
+- Register:             POST    /api/v1/registrations
+- Login:                POST    /api/v1/sessions
+- Logout:               DELETE  /api/v1/sessions/?auth_token=???????
 
-- New event:    POST    /api/v1/events
-- All events:   GET     /api/v1/events
-- Single event: GET     /api/v1/events/:event_id
+- New event:            POST    /api/v1/events
+- All events:           GET     /api/v1/events
+- Single event:         GET     /api/v1/events/:event_id
 
-- New photo:    ??????????????
-- All photos:
-- Single photo:
+- New photo:            ??????????????
+- Photos in 1 event     GET     /api/v1/events/:event_id/photos
+- Single photo:         GET     /api/v1/photos/:photo_id
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.

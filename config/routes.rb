@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       post 'events' => 'events#create', :as => 'newevent'
 
       # Photo
-      get 'photo/:photo_id' => 'photos#show', :as => 'photo'
+      get 'photos/:photo_id' => 'photos#show', :as => 'photo'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

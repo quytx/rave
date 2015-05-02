@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :photos
   
   namespace :api do
   namespace :v1 do

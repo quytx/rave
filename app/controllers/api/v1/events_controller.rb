@@ -21,6 +21,19 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
+  def show_photos
+    @event = Event.find(params[:event_id])
+    if @event
+      @photos = @event.photos.all
+      respond_with(@photos)
+    else
+      render :status => :unprocessable_entity,
+             :json => { :success => false,
+                        :info => @event.errors,
+                        :data => {} }
+    end
+  end
+
   def create
     # TO DO 
     event = User.find(params[:event][:user_id]).events.new(params[:event])

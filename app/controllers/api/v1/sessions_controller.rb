@@ -1,6 +1,7 @@
 class Api::V1::SessionsController < Devise::SessionsController
   skip_before_filter :verify_authenticity_token,
                      :if => Proc.new { |c| c.request.format == 'application/json' }
+  # prepend_before_filter :allow_params_authentication!, only: :create
 
   respond_to :json
 

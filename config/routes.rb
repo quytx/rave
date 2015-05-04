@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
       # Photo
       get 'photos/:photo_id' => 'photos#show', :as => 'photo'
+      post 'photos' => 'photos#create', :as => "newphoto"
     end
   end
 

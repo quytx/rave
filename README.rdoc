@@ -9,7 +9,7 @@ API  application/json:
 - All events:           GET     /api/v1/events
 - Single event:         GET     /api/v1/events/:event_id
 
-- New photo:            ??????????????
+- New photo:            POST    /api/v1/photos
 - Photos in 1 event     GET     /api/v1/events/:event_id/photos
 - Single photo:         GET     /api/v1/photos/:photo_id
 

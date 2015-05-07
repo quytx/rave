@@ -21,6 +21,7 @@ class Api::V1::PhotosController < ApplicationController
     end
 
     @event = Event.find(params[:event_id])
+    @photo = nil
     if @event
       @photo = @event.photos.create!(user_id: userID)
       File.open(img_local_path) do |file|
@@ -31,6 +32,7 @@ class Api::V1::PhotosController < ApplicationController
     # Set default cover photo
     if !@event.cover_photo
       @event.cover_photo = @photo.url.url
+      @event.save!
     end
     File.delete(img_local_path)
     if @photo

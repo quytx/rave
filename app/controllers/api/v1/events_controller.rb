@@ -68,6 +68,7 @@ class Api::V1::EventsController < ApplicationController
         # Set default cover photo
         if !@event.cover_photo
           @event.cover_photo = @photo.url.url
+          @event.save!
         end
       end 
         

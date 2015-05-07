@@ -5,7 +5,8 @@ class Api::V1::EventsController < ApplicationController
   respond_to :json
 
   def index
-    @events = Event.all
+    curr_time = Time.now.in_time_zone("Central Time (US & Canada)")
+    @events = Event.where("end_time > ?", curr_time)
     respond_with(@events)
   end
 

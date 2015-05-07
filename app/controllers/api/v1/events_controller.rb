@@ -43,8 +43,16 @@ class Api::V1::EventsController < ApplicationController
     @event.description = params[:event][:description]
     @event.location = params[:event][:location]
     date_and_time = '%m-%d-%Y %H:%M:%S %Z'
-    @event.start_time = DateTime.strptime(params[:event][:start_time]+ " Central Time (US & Canada)", date_and_time)
-    @event.end_time = DateTime.strptime(params[:event][:end_time]+ " Central Time (US & Canada)", date_and_time)
+    begin
+      @event.start_time = DateTime.strptime(params[:event][:start_time]+ " Central Time (US & Canada)", date_and_time)
+    rescue
+      @event.start_time = nil
+    end
+    begin
+      @event.end_time = DateTime.strptime(params[:event][:end_time]+ " Central Time (US & Canada)", date_and_time)
+    rescue
+      @event.end_time = nil
+    end
 
     if @event.save
 

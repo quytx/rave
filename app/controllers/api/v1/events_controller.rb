@@ -37,22 +37,22 @@ class Api::V1::EventsController < ApplicationController
 
   def create
     # TO DO 
-    event = User.find(params[:event][:user_id]).events.new(params[:event])
+    @event = User.find(params[:event][:user_id]).events.new(params[:event])
     # Later on might have to change to current_user (use session)
     date_and_time = '%m-%d-%Y %H:%M:%S %Z'
-    event.start_time = DateTime.strptime(params[:event][:start_time]+ " Central Time (US & Canada)", date_and_time)
-    event.end_time = DateTime.strptime(params[:event][:end_time]+ " Central Time (US & Canada)", date_and_time)
-    if event.save
+    @event.start_time = DateTime.strptime(params[:event][:start_time]+ " Central Time (US & Canada)", date_and_time)
+    @event.end_time = DateTime.strptime(params[:event][:end_time]+ " Central Time (US & Canada)", date_and_time)
+    if @event.save
       
       render :status => 200,
            :json => { :success => true,
                       :info => "Event created",
-                      :data => { :event => event } 
+                      :data => { :event => @event } 
                     }
     else
       render :status => :unprocessable_entity,
              :json => { :success => false,
-                        :info => event.errors,
+                        :info => @event.errors,
                         :data => {} }
     end
   end

@@ -10,4 +10,8 @@ class CreateEvents < ActiveRecord::Migration
       t.timestamps
     end
   end
+
+  def change
+    add_column :description, :string
+  end
 end

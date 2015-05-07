@@ -37,8 +37,11 @@ class Api::V1::EventsController < ApplicationController
 
   def create
     # TO DO 
-    @event = User.find(params[:event][:user_id]).events.new(params[:event])
+    @event = User.find(params[:event][:user_id]).events.new()
     # Later on might have to change to current_user (use session)
+    @event.name = params[:event][:name]
+    @event.description = params[:event][:description]
+    @event.location = params[:event][:location]
     date_and_time = '%m-%d-%Y %H:%M:%S %Z'
     @event.start_time = DateTime.strptime(params[:event][:start_time]+ " Central Time (US & Canada)", date_and_time)
     @event.end_time = DateTime.strptime(params[:event][:end_time]+ " Central Time (US & Canada)", date_and_time)

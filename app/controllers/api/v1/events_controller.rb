@@ -42,8 +42,24 @@ class Api::V1::EventsController < ApplicationController
     date_and_time = '%m-%d-%Y %H:%M:%S %Z'
     @event.start_time = DateTime.strptime(params[:event][:start_time]+ " Central Time (US & Canada)", date_and_time)
     @event.end_time = DateTime.strptime(params[:event][:end_time]+ " Central Time (US & Canada)", date_and_time)
+
     if @event.save
-      
+
+      # if photo included
+      if params[:photo]
+        @photo = @event.photos.create(user_id: @event.user_id)
+        img_local_path = saveImg(params[:photo][:imgBase64])
+        File.open(img_local_path) do |file|
+          @photo.url = file
+          @photo.save!
+        end
+        File.delete(img_local_path)
+        # Set default cover photo
+        if !@event.cover_photo
+          @event.cover_photo = @photo.url.url
+        end
+      end 
+        
       render :status => 200,
            :json => { :success => true,
                       :info => "Event created",

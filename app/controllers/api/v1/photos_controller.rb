@@ -28,6 +28,10 @@ class Api::V1::PhotosController < ApplicationController
         @photo.save!
       end
     end
+    # Set default cover photo
+    if !@event.cover_photo
+      @event.cover_photo = @photo.url.url
+    end
     File.delete(img_local_path)
     if @photo
       respond_with(@photo)

@@ -49,12 +49,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def checkin
-    userID = params[:user_id]
-    eventID = params[:event_id]
-    puts "=============================================="
-    puts userID
-    puts eventID
-    @ev = EventParticipant.find(user_id: userID, event_id: eventID)
+    @ev = EventParticipant.where(user_id: userID, event_id: eventID)
 
     if @ev
       @ev.destroy

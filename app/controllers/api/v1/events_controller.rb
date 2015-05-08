@@ -53,6 +53,11 @@ class Api::V1::EventsController < ApplicationController
 
     if @ev
       EventParticipant.destroy(@ev)
+      render :status => 200,
+           :json => { :success => true,
+                      :info => "You're now checked out.",
+                      :data => { :event => @event } 
+                    }
     else
       ev = EventParticipant.new(user_id: params[:user_id], event_id: params[:event_id])
       if ev.save

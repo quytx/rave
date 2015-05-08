@@ -59,11 +59,12 @@ class Api::V1::EventsController < ApplicationController
                       :info => "Checked in successfully!",
                       :checked_in => true
                     }
+        return            
       else
         render :status => :unprocessable_entity,
              :json => { :success => false,
                         :info => ev.errors,
-                        :data => {} }
+                        :data => {} }           
       end                  
     end
     if @ev
@@ -83,13 +84,15 @@ class Api::V1::EventsController < ApplicationController
       render :status => 200,
          :json => { :success => true,
                     :checked_in => false
-                  }               
+                  }    
+      return                       
     end
-    render :status => 200,
-           :json => { :success => true,
-                      :checked_in => true
-                    }
-
+    if @ev
+      render :status => 200,
+             :json => { :success => true,
+                        :checked_in => true
+                      }
+    end                
   end
 
   def create

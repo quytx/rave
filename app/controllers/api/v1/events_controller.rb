@@ -6,7 +6,7 @@ class Api::V1::EventsController < ApplicationController
 
   def index
     curr_time = Time.now.in_time_zone("Central Time (US & Canada)")
-    @events = Event.where("end_time > ?", curr_time)
+    @events = Event.where("end_time > ?", curr_time).sort_by(&:end_time)
     respond_with(@events)
   end
 

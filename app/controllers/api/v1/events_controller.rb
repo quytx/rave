@@ -11,7 +11,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def myevents
-    @user = User.find(user_id: params[:user_id])
+    @user = User.find(params[:user_id])
     if @user
       @events = @user.attended_events
       respond_with(@events)

@@ -64,6 +64,7 @@ class Api::V1::EventsController < ApplicationController
              :json => { :success => false,
                         :info => ev.errors,
                         :data => {} }
+      end                  
     end
     if @ev
       EventParticipant.destroy(@ev)

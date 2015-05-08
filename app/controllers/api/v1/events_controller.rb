@@ -49,21 +49,14 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def checkin
-    @ev = EventParticipant.where(user_id: params[:user_id], event_id: params[:event_id])
-
-    if @ev
-      EventParticipant.destroy(@ev)
-      render :status => 200,
-           :json => { :success => true,
-                      :info => "You're now checked out.",
-                      :data => { :event => @event } 
-                    }
-    else
+    begin
+      @ev = EventParticipant.where(user_id: params[:user_id], event_id: params[:event_id])
+    rescue
       ev = EventParticipant.new(user_id: params[:user_id], event_id: params[:event_id])
       if ev.save
         render :status => 200,
            :json => { :success => true,
-                      :info => "Checked in successfully",
+                      :info => "Checked in",
                       :data => { :event => @event } 
                     }
       else
@@ -71,11 +64,15 @@ class Api::V1::EventsController < ApplicationController
              :json => { :success => false,
                         :info => ev.errors,
                         :data => {} }
-      end
     end
-
-    
-
+    if @ev
+      EventParticipant.destroy(@ev)
+      render :status => 200,
+           :json => { :success => true,
+                      :info => "Checked out",
+                      :data => { :event => @event } 
+                    }
+    end
   end
 
   def create

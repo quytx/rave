@@ -76,6 +76,22 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
+  def status
+    begin
+      @ev = EventParticipant.where(user_id: params[:user_id], event_id: params[:event_id]).first!
+    rescue
+      render :status => 200,
+         :json => { :success => true,
+                    :checked_in => false
+                  }               
+    end
+    render :status => 200,
+           :json => { :success => true,
+                      :checked_in => true
+                    }
+
+  end
+
   def create
     # TO DO 
     @event = User.find(params[:event][:user_id]).events.new()

@@ -52,7 +52,7 @@ class Api::V1::EventsController < ApplicationController
     @ev = EventParticipant.where(user_id: params[:user_id], event_id: params[:event_id])
 
     if @ev
-      @ev.destroy
+      EventParticipant.destroy(@ev)
     else
       ev = EventParticipant.new(user_id: params[:user_id], event_id: params[:event_id])
       if ev.save

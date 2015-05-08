@@ -10,6 +10,19 @@ class Api::V1::EventsController < ApplicationController
     respond_with(@events)
   end
 
+  def attends
+    @user = User.find(params[:user_id])
+    if @user
+      @events = @user.attended_events
+      respond_with(@events)
+    else
+      ender :status => :unprocessable_entity,
+             :json => { :success => false,
+                        :info => "No user",
+                        :data => {} }
+    end
+  end
+
   def myevents
     @user = User.find(params[:user_id])
     if @user

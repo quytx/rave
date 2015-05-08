@@ -35,6 +35,38 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
+  def checkin
+    begin
+      @ev = EventParticipant.find(user_id: params[:user_id], event_id: params[:event_id])
+    rescue
+      render :status => :unprocessable_entity,
+             :json => { :success => false,
+                        :info => @ev.errors,
+                        :data => {} }
+    end
+
+    if @ev
+      @ev.destroy
+    else
+      ev = EventParticipant.new(user_id: params[:user_id], event_id: params[:event_id])
+      if ev.save
+        render :status => 200,
+           :json => { :success => true,
+                      :info => "Checked in successfully",
+                      :data => { :event => @event } 
+                    }
+      else
+        render :status => :unprocessable_entity,
+             :json => { :success => false,
+                        :info => ev.errors,
+                        :data => {} }
+      end
+    end
+
+    
+
+  end
+
   def create
     # TO DO 
     @event = User.find(params[:event][:user_id]).events.new()
@@ -71,6 +103,9 @@ class Api::V1::EventsController < ApplicationController
           @event.save!
         end
       end 
+
+      ev = EventParticipant.new(user_id: params[:event][:user_id], event_id: @event.id)
+      ev.save!
         
       render :status => 200,
            :json => { :success => true,

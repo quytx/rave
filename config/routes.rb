@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get 'events/:event_id/photos' => 'events#show_photos', :as => 'showphotos'
       get 'events/:event_id' => 'events#show', :as => 'showevent'
       post 'events' => 'events#create', :as => 'newevent'
+      post 'checkin' => 'events#checkin', :as => 'checkin'
 
       # Photo
       get 'photos/:photo_id' => 'photos#show', :as => 'photo'

@@ -57,7 +57,7 @@ class Api::V1::EventsController < ApplicationController
         render :status => 200,
            :json => { :success => true,
                       :info => "Checked in successfully!",
-                      :data => { :checked_in => "true" } 
+                      :checked_in => "true"
                     }
       else
         render :status => :unprocessable_entity,
@@ -71,7 +71,7 @@ class Api::V1::EventsController < ApplicationController
       render :status => 200,
            :json => { :success => true,
                       :info => "You're now checked out.",
-                      :data => { :checked_in => "false" } 
+                      :checked_in => "false"
                     }
     end
   end

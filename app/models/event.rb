@@ -9,7 +9,15 @@ class Event < ActiveRecord::Base
     self.participants.all.count
   end
 
+  def st
+    self.start_time.to_formatted_s(:long)
+  end
+
+  def et
+    self.end_time.to_formatted_s(:long)
+  end
+
   def as_json(options={})
-    super.as_json(options).merge({:participant_count => guest_count})
+    super.as_json({except: :start_time, except: :end_time}).merge({:participant_count => guest_count, :start_time => st, :end_time => et})
   end
 end

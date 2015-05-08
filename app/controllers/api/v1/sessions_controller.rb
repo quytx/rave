@@ -11,7 +11,10 @@ class Api::V1::SessionsController < Devise::SessionsController
            :json => { :success => true,
                       :info => "Logged in",
                       :data => { :auth_token => current_user.authentication_token,
-                                 :user_id => current_user.id } }
+                                 :user_id => current_user.id,
+                                 :user_name => current_user.name,
+                                 :user_email => current_user.email
+                                  } }
   end
 
   def destroy

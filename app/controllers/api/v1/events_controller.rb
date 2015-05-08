@@ -50,8 +50,8 @@ class Api::V1::EventsController < ApplicationController
 
   def checkin
     begin
-      @ev = EventParticipant.where(user_id: params[:user_id], event_id: params[:event_id]) || raise(ActiveRecord::RecordNotFound)
-    rescue ActiveRecord::RecordNotFound
+      @ev = EventParticipant.where(user_id: params[:user_id], event_id: params[:event_id]).first!
+    rescue
       ev = EventParticipant.new(user_id: params[:user_id], event_id: params[:event_id])
       if ev.save
         render :status => 200,

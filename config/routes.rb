@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
       # Event
       get 'events' => 'events#index', :as => 'allevent'
-      get 'myevents' => 'events#myevents', :as => 'myevents'
+      get 'myevents/:user_id' => 'events#myevents', :as => 'myevents'
       get 'events/:event_id/photos' => 'events#show_photos', :as => 'showphotos'
       get 'events/:event_id' => 'events#show', :as => 'showevent'
       post 'events' => 'events#create', :as => 'newevent'

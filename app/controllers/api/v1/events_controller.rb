@@ -13,7 +13,7 @@ class Api::V1::EventsController < ApplicationController
   def myevents
     @user = User.find(params[:user_id])
     if @user
-      @events = @user.attended_events
+      @events = @user.events
       respond_with(@events)
     else
       ender :status => :unprocessable_entity,

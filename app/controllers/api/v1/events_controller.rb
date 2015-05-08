@@ -49,7 +49,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def checkin
-    @ev = EventParticipant.where(user_id: userID, event_id: eventID)
+    @ev = EventParticipant.where(user_id: params[:user_id], event_id: params[:event_id])
 
     if @ev
       @ev.destroy

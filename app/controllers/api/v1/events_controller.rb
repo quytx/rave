@@ -49,14 +49,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def checkin
-    begin
-      @ev = EventParticipant.find(user_id: params[:user_id], event_id: params[:event_id])
-    rescue
-      render :status => :unprocessable_entity,
-             :json => { :success => false,
-                        :info => @ev.errors,
-                        :data => {} }
-    end
+    @ev = EventParticipant.find(user_id: params[:user_id], event_id: params[:event_id])
 
     if @ev
       @ev.destroy

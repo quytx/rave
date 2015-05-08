@@ -10,11 +10,11 @@ class Event < ActiveRecord::Base
   end
 
   def st
-    self.start_time.in_time_zone("Central Time (US & Canada)").to_formatted_s(:long)
+    self.start_time.in_time_zone("Mountain Time (US & Canada)").to_formatted_s(:long)
   end
 
   def et
-    self.end_time.in_time_zone("Central Time (US & Canada)").to_formatted_s(:long)
+    self.end_time.in_time_zone("Mountain Time (US & Canada)").to_formatted_s(:long)
   end
 
   def as_json(options={})
